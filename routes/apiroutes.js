@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 // const store = require('../db/store');
-const notes = require('../db/db.json');
+const notes = require('../db/store');
 // get Route
 module.exports = function(app) {
 app.get("/api/notes", function(req, res) {
