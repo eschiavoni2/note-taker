@@ -13,6 +13,8 @@ function write() {
 
 }
 
-function delet() {
+function del() {
 
 }
+
+module.exports = ;

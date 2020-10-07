@@ -41,9 +41,10 @@
   $(".fa-save").on("click", function(event){
     even.preventDefault();
 
-    var newNote = {
-      title: $(".note-title").val().trim(),
-      body: $(".note-textarea").val().trim(),
+    
+      var title: $(".note-title").val().trim(),
+      var body: $(".note-textarea").val().trim(),
+      const newNote = new Notes (title, body);
     }
   console.log(newNote)
   $.post("/api/notes", newNote,
