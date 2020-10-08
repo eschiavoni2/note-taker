@@ -17,15 +17,17 @@ class Store {
     };
     // take in note, read notes in array, add single note, the write them
     addNote(note) {
-        return this.read().then(notes => {
+        return this.read()
+        .then(data=>JSON.parse(data))
+        .then(notes => 
             [...notes, note]
-        }).then(newnotes => {
-            this.write(newnotes) ;
-        });
+        ).then(newnotes => 
+            this.write(newnotes) 
+        );
     }
     // delete file, get note and use filter
-    del() {
-        return this.getnotes().then(notes => {
+    del(id) {
+        return this.getNotes().then(notes => {
             notes.filter(note => {
                 note.id !== id;
             }).then(filteredNotes => {
