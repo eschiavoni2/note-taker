@@ -1,4 +1,5 @@
 const path = require("path");
+const uuid = require("uuid")
 // const express = require("express");
 // const app = express();
 const store = require('../db/store');
@@ -11,8 +12,9 @@ module.exports = function (app) {
     });
     // receiving a new note to save on the request body to db.json file and then return new note to client
     app.post("/api/notes", function (req, res) {
+        req.body.id = uuid();
         // passed the data from the request to the class method
-        store.write(req.body).then(note => res.json(note))
+        store.addNote(req.body).then(note => res.json(note))
             .catch(err => res.status(500).json(err))
     });
     // receivng a query parameter containing the id of a note to delete

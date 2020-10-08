@@ -14,6 +14,14 @@ class Store {
     write(note) {
         return writeFileAsync("db/db.json", JSON.stringify(note));
     };
+    // take in note
+    addNote(note) {
+        return this.read().then(notes => {
+            [...notes, note]
+        }).then(newnotes => {
+            this.write(newnotes) ;
+        });
+    }
     // delete file, get note and use filter
     del() {
         return this.getnotes().then(notes => {
