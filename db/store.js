@@ -3,7 +3,6 @@ const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 const { stringify } = require("querystring");
 const util = require("util");
-const uuid = require("uuid");
 // class for notes
 class Store {
 
