@@ -16,15 +16,18 @@ module.exports = function (app) {
     app.post("/api/notes", function (req, res) {
         req.body.id = uuidv4();
         // passed the data from the request to the class method
-        store.addNote(req.body).then(note => res.json(note))
-            .catch(err => res.status(500).json(err))
+        store.addNote(req.body)
+            .then(note => res.json(note))
+            .catch(err => res.status(500).json(err));
     });
     // receivng a query parameter containing the id of a note to delete
     app.delete("/api/notes/:id", function (req, res) {
         store.delete(req.params.id)
             .then(data => JSON.parse(data))
             .then(() => res.json())
-            .catch(err => res.status(500).json(err))
-    })
-};
-
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err)
+              });
+});
+}

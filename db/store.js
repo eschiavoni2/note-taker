@@ -18,24 +18,22 @@ class Store {
     // take in note, read notes in array, add single note, the write them
     addNote(note) {
         return this.read()
-        .then(data=>JSON.parse(data))
-        .then(notes => 
-            [...notes, note]
-        ).then(newnotes => 
-            this.write(newnotes) 
-        );
+            .then(data => JSON.parse(data))
+            .then(notes =>
+                [...notes, note]
+            ).then(newnotes =>
+                this.write(newnotes)
+            );
     }
     getNotes() {
         return this.read().then((notes) => JSON.parse(notes));
-      }
+    }
     // delete file, get note and use filter
     delete(id) {
         return this.getNotes().then(notes => {
-            notes.filter(note => {
-                note.id !== id;
-            }).then(filteredNotes => {
+            var filteredNotes = notes.filter(note => { 
+                return note.id !== id });
                 this.write(filteredNotes);
-            });
         });
     };
 }
