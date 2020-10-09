@@ -2,7 +2,7 @@ const fs = require("fs");
 const util = require("util");
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
-const { stringify } = require("querystring");
+// const { stringify } = require("querystring");
 // class for notes
 class Store {
 
@@ -21,8 +21,8 @@ class Store {
             .then(data => JSON.parse(data))
             .then(notes =>
                 [...notes, note]
-            ).then(newnotes =>
-                this.write(newnotes)
+            ).then((newnotes) =>
+                this.write(newnotes),
             );
     }
     getNotes() {
@@ -30,10 +30,12 @@ class Store {
     }
     // delete file, get note and use filter
     delete(id) {
-        return this.getNotes().then(notes => {
-            var filteredNotes = notes.filter(note => { 
-                return note.id !== id });
-                this.write(filteredNotes);
+        return this.getNotes()
+        .then(notes => {
+            var filteredNotes = notes.filter(note => {
+                return note.id !== id
+            });
+            this.write(filteredNotes);
         });
     };
 }
