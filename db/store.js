@@ -25,6 +25,9 @@ class Store {
             this.write(newnotes) 
         );
     }
+    getNotes() {
+        return this.read().then((notes) => JSON.parse(notes));
+      }
     // delete file, get note and use filter
     delete(id) {
         return this.getNotes().then(notes => {
