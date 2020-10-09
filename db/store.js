@@ -26,7 +26,7 @@ class Store {
         );
     }
     // delete file, get note and use filter
-    del(id) {
+    delete(id) {
         return this.getNotes().then(notes => {
             notes.filter(note => {
                 note.id !== id;
